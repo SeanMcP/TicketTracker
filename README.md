@@ -1,1 +1,3 @@
-# TicketTracker\nA simple ticket-tracking browser extension
+# TicketTracker
+
+✅ A simple ticket-tracking browser extension

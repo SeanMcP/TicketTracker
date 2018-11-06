@@ -2,7 +2,7 @@
     "name": "TicketTracker",
     "version": "1.0",
     "description": "🎟 A simple ticket-tracking browser extension",
-    "permissions": ["activeTab", "storage"],
+    "permissions": ["storage"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false

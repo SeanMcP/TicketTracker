@@ -7,18 +7,27 @@ header {
     border-bottom: 1px solid whitesmoke;
 }
 
+header h1 {
+    margin: 1rem 0;
+}
+
+main {
+    padding: 1rem 0;
+}
+
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
+    align-items: center;
     display: flex;
-    justify-content: space-between;
 }
 
-#tickets_list > li {
-    margin-bottom: 1rem;
+li:not(:last-of-type) {
+    margin-bottom: 0.5rem;
 }
 
 #days_list {
@@ -31,6 +40,7 @@ li {
 }
 
 #days_list li:not(:last-of-type) {
+    margin-bottom: 0;
     margin-right: 0.5rem;
 }
 
@@ -55,19 +65,26 @@ li#none_found {
 }
 
 details {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     width: 100%;
 }
 
 details > button {
     background: none;
     padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 details > button:hover {
     color: firebrick;
     text-decoration: underline;
+}
+
+footer {
+    border-top: 1px solid whitesmoke;
+    padding-top: 1rem;
 }
 
 #add_ticket {
@@ -87,7 +104,7 @@ button {
     border-radius: 0.25rem;
 }
 
-button, summary {
+button, summary, input[type="checkbox"] {
     cursor: pointer;
 }
 
@@ -114,6 +131,7 @@ button, summary {
     font-family: monospace;
     font-size: 1.5rem;
     font-weight: bold;
+    padding: 0 1rem;
 }
 
 #settings_toggle {
@@ -125,12 +143,39 @@ button, summary {
 }
 
 #settings {
-    border-top: 1px solid whitesmoke;
+    background: whitesmoke;
+    border-radius: 0.5rem;
     margin-top: 1rem;
-    padding-top: 1rem;
+    padding: 1rem;
+}
+
+#settings li input[type="checkbox"] {
+    margin: 0 0.5rem 0 0;
 }
 
 /* Classes */
+
+button.warning {
+    border: 1px solid orangered;
+    box-sizing: border-box;
+    color: orangered;
+}
+
+button.warning:hover {
+    background: orangered;
+    color: white;
+}
+
+button.danger {
+    border: 1px solid firebrick;
+    box-sizing: border-box;
+    color: firebrick;
+}
+
+button.danger:hover {
+    background: firebrick;
+    color: white;
+}
 
 .hide {
     display: none;

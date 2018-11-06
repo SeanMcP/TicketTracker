@@ -2,7 +2,10 @@ var newInput = document.getElementById('new_input');
 var newButton = document.getElementById('new_button');
 var ticketsList = document.getElementById('tickets_list');
 var settingsToggle = document.getElementById('settings_toggle');
+var deleteAll = document.getElementById('delete_all');
+var expandToggle = document.getElementById('expand_toggle');
 
+var defaultOpen = false;
 var daysInOrder = ['M', 'T', 'W', 'R', 'F'];
 
 function cloneObj(obj) {
@@ -95,7 +98,7 @@ function renderTickets(id) {
             result.tickets.forEach(function(ticket) {
                 var item = document.createElement('li');
                 var details = document.createElement('details');
-                if (id === ticket.id) {
+                if (id === ticket.id || defaultOpen) {
                     details.open = true;
                 }
                 var summary = document.createElement('summary');
@@ -151,6 +154,22 @@ function toggleSettings() {
     }
 }
 
-settingsToggle.addEventListener('click', toggleSettings);
-newButton.addEventListener('click', addTicket);
+function removeAll() {
+    chrome.storage.sync.set({
+        days: {},
+        tickets: {}
+    }, function() {
+        renderTickets();
+    });
+}
+
+function toggleDefaultOpen(e) {
+    defaultOpen = e.target.checked;
+    renderTickets();
+}
+
 renderTickets();
+newButton.addEventListener('click', addTicket);
+settingsToggle.addEventListener('click', toggleSettings);
+expandToggle.addEventListener('click', toggleDefaultOpen);
+deleteAll.addEventListener('click', removeAll);

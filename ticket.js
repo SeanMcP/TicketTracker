@@ -23,6 +23,20 @@ function addTicket() {
     }
 }
 
+function removeTicket(id) {
+    chrome.storage.sync.get('tickets', function(result) {
+        var list = result.tickets.filter(function(ticket) {
+            return ticket.id !== id;
+        });
+
+        chrome.storage.sync.set({
+            tickets: list
+        }, function() {
+            renderTickets();
+        });
+    });
+}
+
 function renderTickets() {
     while (ticketsList.firstChild) {
         ticketsList.removeChild(ticketsList.firstChild);
@@ -30,7 +44,18 @@ function renderTickets() {
     chrome.storage.sync.get('tickets', function(result) {
         result.tickets.forEach(function(ticket) {
             var item = document.createElement('li');
-            item.textContent = ticket.name;
+            var heading = document.createElement('h1');
+            heading.textContent = ticket.name;
+            item.appendChild(heading);
+
+            var deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                removeTicket(ticket.id);
+            });
+            item.appendChild(deleteButton);
+
             ticketsList.appendChild(item);
         })
     });

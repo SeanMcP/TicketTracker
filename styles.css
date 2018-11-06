@@ -4,7 +4,7 @@ body {
 }
 
 header {
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid whitesmoke;
 }
 
 ul {
@@ -17,9 +17,57 @@ li {
     justify-content: space-between;
 }
 
+#tickets_list > li {
+    margin-bottom: 1rem;
+}
+
+#days_list {
+    display: flex;
+    margin: 0.5rem 0;
+}
+
+#days_list li {
+    flex: 1;
+}
+
+#days_list li:not(:last-of-type) {
+    margin-right: 0.5rem;
+}
+
+#days_list li button {
+    width: 100%;
+}
+
+#days_list li button.zero {
+    background: whitesmoke;
+}
+#days_list li button.half {
+    background: linear-gradient(to bottom right, yellowgreen 49%, whitesmoke 51%);
+}
+#days_list li button.full {
+    background: yellowgreen;
+}
+
+
 li#none_found {
     font-style: italic;
     opacity: 0.5;
+}
+
+details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+details > button {
+    background: none;
+    padding: 0;
+}
+
+details > button:hover {
+    color: firebrick;
+    text-decoration: underline;
 }
 
 footer {
@@ -34,13 +82,23 @@ button {
     font-family: inherit;
 }
 
+button {
+    background: whitesmoke;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+button, summary {
+    cursor: pointer;
+}
+
 footer label {
     align-self: center;
     margin-right: 0.5rem;
 }
 
 footer input {
-    border: 1px solid lightgray;
+    border: 1px solid whitesmoke;
     border-right: none;
     border-bottom-left-radius: 5rem;
     border-top-left-radius: 5rem;

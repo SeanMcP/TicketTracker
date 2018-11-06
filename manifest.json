@@ -2,5 +2,8 @@
     "name": "TicketTracker",
     "version": "1.0",
     "description": "✅ A simple ticket-tracking browser extension",
+    "page_action": {
+        "default_popup": "popup.html"
+    },
     "manifest_version": 2
-  }
+}

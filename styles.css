@@ -26,8 +26,8 @@ li {
     display: flex;
 }
 
-li:not(:last-of-type) {
-    margin-bottom: 0.5rem;
+#tickets_list li:not(:last-of-type) {
+    margin-bottom: 1rem;
 }
 
 #days_list {
@@ -40,7 +40,6 @@ li:not(:last-of-type) {
 }
 
 #days_list li:not(:last-of-type) {
-    margin-bottom: 0;
     margin-right: 0.5rem;
 }
 
@@ -59,8 +58,10 @@ li:not(:last-of-type) {
 }
 
 
-li#none_found {
+li#none_found,
+details .time {
     font-style: italic;
+    justify-content: center;
     opacity: 0.5;
 }
 
@@ -102,6 +103,8 @@ button {
     background: whitesmoke;
     border: none;
     border-radius: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
 }
 
 button, summary, input[type="checkbox"] {
@@ -149,22 +152,41 @@ button, summary, input[type="checkbox"] {
     padding: 1rem;
 }
 
+#settings li:not(:last-of-type) {
+    margin-bottom: 0.5rem;
+}
+
 #settings li input[type="checkbox"] {
     margin: 0 0.5rem 0 0;
 }
 
-#settings p {
-    margin: 1rem 0 0;
-    text-align: right;
+#attribution {
+    display: flex;
+    flex-direction: column;
 }
 
-#settings p a {
+#attribution a {
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
 }
 
-#settings p a:hover {
+#attribution img.icon {
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: -0.25rem;
+}
+
+#attribution a:hover {
     text-decoration: underline;
+}
+
+#attribution:hover ul {
+    display: initial;
+    margin-top: 0.5rem;
+}
+
+#attribution li {
+    justify-content: flex-end;
 }
 
 /* Classes */

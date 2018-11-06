@@ -133,6 +133,13 @@ function renderTickets(id) {
                 });
                 details.appendChild(deleteButton);
 
+                var time = document.createElement('div');
+                time.classList.add('time');
+                var now = new Date().getTime();
+                var diff = Math.round((ticket.id - now) / 86400000);
+                time.textContent = `Added ${Math.abs(diff)} days ago`;
+                details.appendChild(time);
+
                 item.appendChild(details);
                 ticketsList.appendChild(item);
             })

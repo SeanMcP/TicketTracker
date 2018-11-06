@@ -155,17 +155,6 @@ button, summary, input[type="checkbox"] {
 
 /* Classes */
 
-button.warning {
-    border: 1px solid orangered;
-    box-sizing: border-box;
-    color: orangered;
-}
-
-button.warning:hover {
-    background: orangered;
-    color: white;
-}
-
 button.danger {
     border: 1px solid firebrick;
     box-sizing: border-box;

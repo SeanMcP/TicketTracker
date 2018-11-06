@@ -90,6 +90,7 @@ function trackTicket(id, day) {
 }
 
 function renderTickets(id) {
+    var previouslyOpen = findOpenDetails();
     while (ticketsList.firstChild) {
         ticketsList.removeChild(ticketsList.firstChild);
     }
@@ -98,9 +99,10 @@ function renderTickets(id) {
             result.tickets.forEach(function(ticket) {
                 var item = document.createElement('li');
                 var details = document.createElement('details');
-                if (id === ticket.id || defaultOpen) {
+                if (id === ticket.id || previouslyOpen.includes(ticket.id) || defaultOpen) {
                     details.open = true;
                 }
+                details.dataset.id = ticket.id;
                 var summary = document.createElement('summary');
                 summary.textContent = ticket.name;
                 details.appendChild(summary);
@@ -166,6 +168,14 @@ function removeAll() {
 function toggleDefaultOpen(e) {
     defaultOpen = e.target.checked;
     renderTickets();
+}
+
+function findOpenDetails() {
+    var open = [];
+    document.querySelectorAll('details[open]').forEach(function(item) {
+        open.push(Number(item.dataset.id));
+    });
+    return open;
 }
 
 renderTickets();

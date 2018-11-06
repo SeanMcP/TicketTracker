@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <header>
-            <h1>Tickets</h1>
-        </header>
-        <main>
-            <ul id="tickets_list"></ul>
-        </main>
-        <footer>
-            <section id="add_ticket">
-                <label for="new_input" class="hide">Add a ticket:</label>
-                <input id="new_input" type="text" placeholder="Add a ticket (e.g. ABC-123)">
-                <button id="new_button" type="button"><img class="icon" src="img/plus.svg" alt="Add ticket"/></button>
-                <button id="settings_toggle" type="button"><img class="icon" src="img/settings.svg" alt="Settings"/></button>
-            </section>
-            <section id="settings" class="hide">
-                <ul>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Tickets</h1>
+    </header>
+    <main>
+        <ul id="tickets_list"></ul>
+    </main>
+    <footer>
+        <section id="add_ticket">
+            <label for="new_input" class="hide">Add a ticket:</label>
+            <input id="new_input" type="text" placeholder="Add a ticket (e.g. ABC-123)">
+            <button id="new_button" type="button"><img class="icon" src="img/plus.svg" alt="Add ticket" /></button>
+            <button id="settings_toggle" type="button"><img class="icon" src="img/settings.svg" alt="Settings" /></button>
+        </section>
+        <section id="settings" class="hide">
+            <ul>
+                <li>
+                    <input type="checkbox" id="expand_toggle">
+                    <label for="expand_toggle">Expand tickets (can be overridden)</label>
+                </li>
+                <li>
+                    <button id="delete_all" type="button" class="danger">Delete All</button>
+                </li>
+            </ul>
+            <section id="attribution">
+                <img class="icon" src="./img/info.svg" />
+                <ul class="hide">
                     <li>
-                        <input type="checkbox" id="expand_toggle">
-                        <label for="expand_toggle">Expand tickets (can be overridden)</label>
+                        <a href="https://github.com/seanmcp" target="_blank" rel="noopener noreferrer">Code by Sean McPherson</a>
                     </li>
                     <li>
-                        <button id="delete_all" type="button" class="danger">Delete All</button>
+                        <a href="https://dribbble.com/kvcherov" target="_blank" rel="noopener noreferrer">Icon by Maddox Reksten</a>
+                    </li>
+                    <li>
+                        <a href="https://feathericons.com" target="_blank" rel="noopener noreferrer">Others by Feather Icons</a>
                     </li>
                 </ul>
-                <p><a href="https://github.com/seanmcp" target="_blank" rel="noopener noreferrer">SeanMcP</a> | <a href="https://feathericons.com" target="_blank" rel="noopener noreferrer">Feather Icons</a></p>
             </section>
-        </footer>
-        <script src="ticket.js"></script>
-    </body>
+        </section>
+    </footer>
+    <script src="ticket.js"></script>
+</body>
+
 </html>

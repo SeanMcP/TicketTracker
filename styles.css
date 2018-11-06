@@ -1,0 +1,51 @@
+body {
+    min-width: 400px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+}
+li h1 {
+    font-size: 1rem;
+    font-weight: normal;
+}
+li#none_found {
+    font-style: italic;
+    opacity: 0.75;
+}
+footer {
+    /* align-items: center; */
+    display: flex;
+    font-size: inherit;
+}
+input, button {
+    font-size: inherit;
+    font-family: inherit;
+}
+footer label {
+    align-self: center;
+    margin-right: 0.5rem;
+}
+footer input {
+    border: 1px solid #f1f1f1;
+    border-right: none;
+    border-bottom-left-radius: 5rem;
+    border-top-left-radius: 5rem;
+    flex: 1;
+    padding-left: 0.5rem;
+}
+footer button {
+    border: none;
+    border-bottom-right-radius: 5rem;
+    border-top-right-radius: 5rem;
+    color: white;
+    background: lightskyblue;
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

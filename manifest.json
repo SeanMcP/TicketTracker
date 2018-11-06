@@ -2,12 +2,12 @@
     "name": "TicketTracker",
     "version": "1.0",
     "description": "✅ A simple ticket-tracking browser extension",
-    "permissions": ["storage"],
+    "permissions": ["activeTab", "storage"],
     "background": {
         "scripts": ["background.js"],
-        "persistent": true
+        "persistent": false
     },
-    "page_action": {
+    "browser_action": {
         "default_popup": "popup.html"
     },
     "manifest_version": 2

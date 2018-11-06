@@ -42,22 +42,29 @@ function renderTickets() {
         ticketsList.removeChild(ticketsList.firstChild);
     }
     chrome.storage.sync.get('tickets', function(result) {
-        result.tickets.forEach(function(ticket) {
-            var item = document.createElement('li');
-            var heading = document.createElement('h1');
-            heading.textContent = ticket.name;
-            item.appendChild(heading);
-
-            var deleteButton = document.createElement('button');
-            deleteButton.type = 'button';
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', function() {
-                removeTicket(ticket.id);
-            });
-            item.appendChild(deleteButton);
-
-            ticketsList.appendChild(item);
-        })
+        if (result.tickets.length) {
+            result.tickets.forEach(function(ticket) {
+                var item = document.createElement('li');
+                var heading = document.createElement('h1');
+                heading.textContent = ticket.name;
+                item.appendChild(heading);
+    
+                var deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function() {
+                    removeTicket(ticket.id);
+                });
+                item.appendChild(deleteButton);
+    
+                ticketsList.appendChild(item);
+            })
+        } else {
+            var noneFound = document.createElement('li');
+            noneFound.id = "none_found";
+            noneFound.textContent = "Add a ticket below";
+            ticketsList.appendChild(noneFound);
+        }
     });
 }
 

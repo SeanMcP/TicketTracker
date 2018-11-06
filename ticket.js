@@ -1,6 +1,7 @@
 var newInput = document.getElementById('new_input');
 var newButton = document.getElementById('new_button');
 var ticketsList = document.getElementById('tickets_list');
+var settingsToggle = document.getElementById('settings_toggle');
 
 var daysInOrder = ['M', 'T', 'W', 'R', 'F'];
 
@@ -139,5 +140,17 @@ function renderTickets(id) {
     });
 }
 
+function toggleSettings() {
+    var settings = document.getElementById('settings');
+    if (settings.classList.contains('hide')) {
+        settings.removeAttribute('class');
+        settingsToggle.classList.add('open');
+    } else {
+        settings.classList.add('hide');
+        settingsToggle.removeAttribute('class');
+    }
+}
+
+settingsToggle.addEventListener('click', toggleSettings);
 newButton.addEventListener('click', addTicket);
 renderTickets();

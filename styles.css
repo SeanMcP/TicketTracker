@@ -1,5 +1,5 @@
 body {
-    min-width: 15rem;
+    min-width: 20rem;
     margin: 1rem;
 }
 
@@ -70,8 +70,7 @@ details > button:hover {
     text-decoration: underline;
 }
 
-footer {
-    /* align-items: center; */
+#add_ticket {
     display: flex;
     font-size: inherit;
 }
@@ -92,12 +91,12 @@ button, summary {
     cursor: pointer;
 }
 
-footer label {
+#add_ticket label {
     align-self: center;
     margin-right: 0.5rem;
 }
 
-footer input {
+#add_ticket input {
     border: 1px solid whitesmoke;
     border-right: none;
     border-bottom-left-radius: 5rem;
@@ -106,15 +105,29 @@ footer input {
     padding-left: 0.5rem;
 }
 
-footer button {
+#add_ticket button#new_button {
     border: none;
     border-bottom-right-radius: 5rem;
     border-top-right-radius: 5rem;
     color: white;
-    background: lightskyblue;
+    background: dodgerblue;
     font-family: monospace;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+#settings_toggle {
+    margin-left: 0.5rem;
+}
+
+#settings_toggle.open {
+    background: lightgray;
+}
+
+#settings {
+    border-top: 1px solid whitesmoke;
+    margin-top: 1rem;
+    padding-top: 1rem;
 }
 
 /* Classes */

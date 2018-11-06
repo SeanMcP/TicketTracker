@@ -4,11 +4,15 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h2>Tickets</h2>
-        <ul id="tickets_list"></ul>
+        <header>
+            <h1>Tickets</h1>
+        </header>
+        <main>
+            <ul id="tickets_list"></ul>
+        </main>
         <footer>
-            <label for="new_input">Add ticket:</label>
-            <input id="new_input" type="text" placeholder="E.g. ABC-123" value="ABC-123">
+            <label for="new_input" class="hide">Add a ticket:</label>
+            <input id="new_input" type="text" placeholder="Add a ticket (e.g. ABC-123)" value="ABC-123">
             <button id="new_button" type="button">+</button>
         </footer>
         <script src="ticket.js"></script>

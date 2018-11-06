@@ -1,44 +1,53 @@
 body {
-    min-width: 400px;
+    min-width: 15rem;
+    margin: 1rem;
+}
+
+header {
+    border-bottom: 1px solid lightgray;
 }
 
 ul {
     list-style: none;
     padding: 0;
 }
+
 li {
     display: flex;
     justify-content: space-between;
 }
-li h1 {
-    font-size: 1rem;
-    font-weight: normal;
-}
+
 li#none_found {
     font-style: italic;
-    opacity: 0.75;
+    opacity: 0.5;
 }
+
 footer {
     /* align-items: center; */
     display: flex;
     font-size: inherit;
 }
-input, button {
+
+input,
+button {
     font-size: inherit;
     font-family: inherit;
 }
+
 footer label {
     align-self: center;
     margin-right: 0.5rem;
 }
+
 footer input {
-    border: 1px solid #f1f1f1;
+    border: 1px solid lightgray;
     border-right: none;
     border-bottom-left-radius: 5rem;
     border-top-left-radius: 5rem;
     flex: 1;
     padding-left: 0.5rem;
 }
+
 footer button {
     border: none;
     border-bottom-right-radius: 5rem;
@@ -48,4 +57,10 @@ footer button {
     font-family: monospace;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+/* Classes */
+
+.hide {
+    display: none;
 }

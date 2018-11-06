@@ -45,9 +45,10 @@ function renderTickets() {
         if (result.tickets.length) {
             result.tickets.forEach(function(ticket) {
                 var item = document.createElement('li');
-                var heading = document.createElement('h1');
-                heading.textContent = ticket.name;
-                item.appendChild(heading);
+                var details = document.createElement('details');
+                var summary = document.createElement('summary');
+                summary.textContent = ticket.name;
+                details.appendChild(summary);
     
                 var deleteButton = document.createElement('button');
                 deleteButton.type = 'button';
@@ -55,14 +56,15 @@ function renderTickets() {
                 deleteButton.addEventListener('click', function() {
                     removeTicket(ticket.id);
                 });
-                item.appendChild(deleteButton);
-    
+                details.appendChild(deleteButton);
+
+                item.appendChild(details);
                 ticketsList.appendChild(item);
             })
         } else {
             var noneFound = document.createElement('li');
             noneFound.id = "none_found";
-            noneFound.textContent = "Add a ticket below";
+            noneFound.textContent = "**crickets**";
             ticketsList.appendChild(noneFound);
         }
     });

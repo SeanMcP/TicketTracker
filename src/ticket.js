@@ -26,17 +26,16 @@ function getClassFromNumber(number) {
 
 function addTicket() {
     if (newInput.value) {
-        chrome.storage.sync.get(['tickets', 'days'], function(result) {
+        chrome.storage.sync.get(['tickets', 'daysById'], function(result) {
             var tickets = result.tickets.slice(0);
-            var date = new Date();
-            var id = date.getTime();
+            var id = new Date().getTime();
             var newTicket = {
-                id: date.getTime(),
+                id: id,
                 name: newInput.value
             }
             tickets.push(newTicket)
 
-            var days = cloneObj(result.days);
+            var days = cloneObj(result.daysById);
             daysInOrder.forEach(function(day) {
                 if (!days[id]) {
                     days[id] = {};
@@ -46,7 +45,7 @@ function addTicket() {
 
             chrome.storage.sync.set({
                 tickets: tickets,
-                days: days
+                daysById: days
             }, function() {
                 newInput.value = '';
                 renderTickets();
@@ -56,17 +55,17 @@ function addTicket() {
 }
 
 function removeTicket(id) {
-    chrome.storage.sync.get(['tickets', 'days'], function(result) {
+    chrome.storage.sync.get(['tickets', 'daysById'], function(result) {
         var tickets = result.tickets.filter(function(ticket) {
             return ticket.id !== id;
         });
 
-        var days = cloneObj(result.days);
+        var days = cloneObj(result.daysById);
         delete days[id];
 
         chrome.storage.sync.set({
             tickets: tickets,
-            days: days
+            daysById: days
         }, function() {
             renderTickets();
         });
@@ -74,15 +73,15 @@ function removeTicket(id) {
 }
 
 function trackTicket(id, day) {
-    chrome.storage.sync.get('days', function(result) {
-        var days = cloneObj(result.days);
+    chrome.storage.sync.get('daysById', function(result) {
+        var days = cloneObj(result.daysById);
         days[id][day] += 0.5;
         if (days[id][day] > 1) {
             days[id][day] = 0;
         }
 
         chrome.storage.sync.set({
-            days: days
+            daysById: days
         }, function() {
             renderTickets(id);
         });
@@ -94,7 +93,7 @@ function renderTickets(id) {
     while (ticketsList.firstChild) {
         ticketsList.removeChild(ticketsList.firstChild);
     }
-    chrome.storage.sync.get(['tickets', 'days'], function(result) {
+    chrome.storage.sync.get(['tickets', 'daysById'], function(result) {
         if (result.tickets.length) {
             result.tickets.forEach(function(ticket) {
                 var item = document.createElement('li');
@@ -109,7 +108,7 @@ function renderTickets(id) {
 
                 var daysList = document.createElement('ul');
                 daysList.id = 'days_list';
-                var days = result.days[ticket.id];
+                var days = result.daysById[ticket.id];
                 daysInOrder.forEach(function(day) {
                     var dayItem = document.createElement('li');
                     var dayButton = document.createElement('button');
@@ -124,21 +123,30 @@ function renderTickets(id) {
                     daysList.appendChild(dayItem);
                 });
                 details.appendChild(daysList);
-    
+
+                var info = document.createElement('section');
+                info.classList.add('info');
+
+                var time = document.createElement('span');
+                time.classList.add('time');
+                var diff = Math.abs(
+                    Math.round(
+                        (ticket.id - new Date().getTime()) / 86400000
+                    )
+                );
+                time.textContent = `Added ${diff > 0 ? `${diff} days ago` : 'today'}`;
+                info.appendChild(time);
+
                 var deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
                 deleteButton.type = 'button';
                 deleteButton.textContent = 'Delete';
                 deleteButton.addEventListener('click', function() {
                     removeTicket(ticket.id);
                 });
-                details.appendChild(deleteButton);
+                info.appendChild(deleteButton);
 
-                var time = document.createElement('div');
-                time.classList.add('time');
-                var now = new Date().getTime();
-                var diff = Math.round((ticket.id - now) / 86400000);
-                time.textContent = `Added ${Math.abs(diff)} days ago`;
-                details.appendChild(time);
+                details.appendChild(info);
 
                 item.appendChild(details);
                 ticketsList.appendChild(item);
@@ -165,7 +173,7 @@ function toggleSettings() {
 
 function removeAll() {
     chrome.storage.sync.set({
-        days: {},
+        daysById: {},
         tickets: {}
     }, function() {
         renderTickets();

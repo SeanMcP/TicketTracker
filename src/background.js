@@ -1,8 +1,6 @@
 chrome.runtime.onInstalled.addListener(function () {
     chrome.storage.sync.set({
-        days: {},
+        daysById: {},
         tickets: []
-    }, function () {
-        console.log("The color is green.");
     });
 });

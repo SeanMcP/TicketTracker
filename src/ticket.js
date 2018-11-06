@@ -5,8 +5,11 @@ var settingsToggle = document.getElementById('settings_toggle');
 var deleteAll = document.getElementById('delete_all');
 var expandToggle = document.getElementById('expand_toggle');
 
-var defaultOpen = false;
 var daysInOrder = ['M', 'T', 'W', 'R', 'F'];
+
+chrome.storage.sync.get('expandAll', function(result) {
+    expandToggle.checked = result.expandAll;
+});
 
 function cloneObj(obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -93,12 +96,12 @@ function renderTickets(id) {
     while (ticketsList.firstChild) {
         ticketsList.removeChild(ticketsList.firstChild);
     }
-    chrome.storage.sync.get(['tickets', 'daysById'], function(result) {
+    chrome.storage.sync.get(['tickets', 'daysById', 'expandAll'], function(result) {
         if (result.tickets.length) {
             result.tickets.forEach(function(ticket) {
                 var item = document.createElement('li');
                 var details = document.createElement('details');
-                if (id === ticket.id || previouslyOpen.includes(ticket.id) || defaultOpen) {
+                if (id === ticket.id || previouslyOpen.includes(ticket.id) || result.expandAll) {
                     details.open = true;
                 }
                 details.dataset.id = ticket.id;
@@ -180,9 +183,12 @@ function removeAll() {
     });
 }
 
-function toggleDefaultOpen(e) {
-    defaultOpen = e.target.checked;
-    renderTickets();
+function toggleExpandAll(e) {
+    chrome.storage.sync.set({
+        expandAll: e.target.checked
+    }, function() {
+        renderTickets();
+    });
 }
 
 function findOpenDetails() {
@@ -196,5 +202,5 @@ function findOpenDetails() {
 renderTickets();
 newButton.addEventListener('click', addTicket);
 settingsToggle.addEventListener('click', toggleSettings);
-expandToggle.addEventListener('click', toggleDefaultOpen);
+expandToggle.addEventListener('click', toggleExpandAll);
 deleteAll.addEventListener('click', removeAll);

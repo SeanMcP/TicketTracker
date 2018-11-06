@@ -149,7 +149,7 @@ button, summary, input[type="checkbox"] {
 
 #settings {
     background: whitesmoke;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     margin-top: 0.5rem;
     padding: 1rem;
 }

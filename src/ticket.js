@@ -114,9 +114,7 @@ function renderTickets(id) {
                 var days = result.daysById[ticket.id];
                 daysInOrder.forEach(function(day) {
                     var dayItem = document.createElement('li');
-                    var dayButton = document.createElement('button');
-                    dayButton.type = 'button';
-                    dayButton.classList.add('day-button', getClassFromNumber(days[day]));
+                    var dayButton = createButton(['day-button', getClassFromNumber(days[day])]);
                     dayButton.textContent = day;
                     dayButton.addEventListener('click', function() {
                         trackTicket(ticket.id, day);

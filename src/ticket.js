@@ -137,16 +137,10 @@ function renderTickets(id) {
                         (ticket.id - new Date().getTime()) / 86400000
                     )
                 );
-                time.textContent = `Added ${diff > 0 ? `${diff} days ago` : 'today'}`;
+                time.textContent = `Added ${diff > 0 ? `${diff} day${diff > 1 ? 's' : ''} ago` : 'today'}`;
                 info.appendChild(time);
 
-                var deleteButton = document.createElement('button');
-                deleteButton.classList.add('delete-button');
-                deleteButton.type = 'button';
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', function() {
-                    removeTicket(ticket.id);
-                });
+                var deleteButton = createDeleteTicketButton(ticket.id);
                 info.appendChild(deleteButton);
 
                 details.appendChild(info);
@@ -161,6 +155,41 @@ function renderTickets(id) {
             ticketsList.appendChild(noneFound);
         }
     });
+}
+
+// Creator functions
+
+// General
+
+function createElementWithClass(type, classes) {
+    var el = document.createElement(type);
+    if (classes) {
+        if (classes.constructor === Array) {
+            classes.forEach(function(cl) {
+                el.classList.add(cl);
+            });
+        } else {
+            el.classList.add(classes)
+        }
+    }
+    return el;
+}
+
+function createButton(classes) {
+    var button = createElementWithClass('button', classes);
+    button.type = 'button';
+    return button;
+}
+
+// Specific
+
+function createDeleteTicketButton(ticketId) {
+    var deleteButton = createButton('delete-button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+        removeTicket(ticketId);
+    });
+    return deleteButton;
 }
 
 function toggleSettings() {

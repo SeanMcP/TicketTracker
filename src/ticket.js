@@ -125,11 +125,9 @@ function renderTickets(id) {
                 });
                 details.appendChild(daysList);
 
-                var info = document.createElement('section');
-                info.classList.add('info');
+                var info = createElementWithClass('section', 'info');
 
-                var time = document.createElement('span');
-                time.classList.add('time');
+                var time = createElementWithClass('span', 'time');
                 var diff = Math.abs(
                     Math.round(
                         (ticket.id - new Date().getTime()) / 86400000

@@ -14,3 +14,7 @@
    - Click "Load unpacked" in the white toolbar, find, then select the unzipped directory 
 5. Test it out! 🎉
    - You're all set up and ready to go!
+
+## Contributing?
+
+Found a bug or want to request a feature? [Report an issue](https://github.com/SeanMcP/TicketTracker/issues) with the appropriate tag. 👍

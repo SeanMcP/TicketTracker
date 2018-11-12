@@ -2,11 +2,7 @@
 
 🎟 A simple ticket-tracking browser extension
 
-## Beta testing
-
-Follow these steps to beta test the extension in **Chrome**.
-
-### Steps
+## Beta
 
 1. Download the .zip from GitHub
    - Click the green button above or [this link](https://github.com/SeanMcP/TicketTracker/archive/master.zip)

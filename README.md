@@ -15,6 +15,6 @@
 5. Test it out! 🎉
    - You're all set up and ready to go!
 
-## Contributing?
+## Contributing
 
 Found a bug or want to request a feature? [Report an issue](https://github.com/SeanMcP/TicketTracker/issues) with the appropriate tag. 👍
